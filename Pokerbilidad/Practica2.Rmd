@@ -1,0 +1,82 @@
+---
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+
+title: "Práctica 2: Probabilidad e Inferencia"
+date: "**Grupo 2:** Paula Armenteros, Marta de Miguel, Victor Gil, María Fernanda Montero, Daniel Redondo."
+author: "**Estadística - Curso 2024/2025**"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Probabilidad en una baraja de cartas
+
+## Probabilidad de Póker
+Póker -> 4 cartas iguales de los 4 palos 1 diferente
+
+```{r}
+# Total de maneras de elegir 5 cartas de 52
+total_combinaciones <- choose(52, 5)
+
+# Para formar un póker:
+# Elegimos 1 de los 13 valores para tener un conjunto de cuatro cartas iguales
+formas_elegir_valor <- choose(13, 1)
+# Elegimos 4 cartas de ese valor (4 palos)
+formas_elegir_4_cartas <- choose(4, 4)
+# Elegimos la quinta carta de los 48 valores restantes
+formas_elegir_carta_adicional <- choose(48, 1)
+
+# Total de maneras de formar un póker
+formas_poker <- formas_elegir_valor * formas_elegir_4_cartas * formas_elegir_carta_adicional
+
+# Calculamos la probabilidad
+probabilidad_poker <- formas_poker / total_combinaciones
+
+# Mostrar el resultado
+probabilidad_poker
+```
+
+## Probabilidad de full
+Full -> combinanción de 3 cartas iguales y 2 iguales
+
+```{r}
+# Total de maneras de elegir 5 cartas de 52
+total_combinaciones <- choose(52, 5)
+
+# Paso 1: Elegir el valor para el trío (13 valores disponibles)
+formas_elegir_valor_trio <- choose(13, 1)
+# Paso 2: Elegir 3 cartas de ese valor (4 palos disponibles)
+formas_elegir_3_cartas_trio <- choose(4, 3)
+
+# Paso 3: Elegir el valor para el par de los 12 valores restantes
+formas_elegir_valor_par <- choose(12, 1)
+# Paso 4: Elegir 2 cartas de ese valor (4 palos disponibles)
+formas_elegir_2_cartas_par <- choose(4, 2)
+
+# Total de maneras de formar un full
+formas_full <- formas_elegir_valor_trio * formas_elegir_3_cartas_trio * formas_elegir_valor_par * formas_elegir_2_cartas_par
+
+# Calcular la probabilidad de un full
+probabilidad_full <- formas_full / total_combinaciones
+
+# Mostrar el resultado
+probabilidad_full
+```
+
+## Probabilidad de dobles parejas
+2 parejas iguales 1 carta diferente
+## Probabilidad de trío
+3 cartas iguales 2 dos desiguales
+## Probabilidad de escalera
+escalera de 5 cartas de diferentes palos
+## Probabilidad de escalera de color
+escalera 5 cartas del mismo palo
+# 2. Distribución y densidad de una variable aleatoria
+
+
+# 3. Experimento: evaluación de efectividad de la vacuna experimental
+
