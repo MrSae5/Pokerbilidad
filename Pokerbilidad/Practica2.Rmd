@@ -68,13 +68,108 @@ probabilidad_full
 ```
 
 ## Probabilidad de dobles parejas
-2 parejas iguales 1 carta diferente
+Doble Pareja -> 2 parejas iguales 1 carta diferente
+
+```{r}
+# Total de maneras de elegir 5 cartas de 52
+total_combinaciones <- choose(52, 5)
+
+# Paso 1: Elegir el valor para las parejas (13 valores disponibles)
+formas_elegir_valor_pareja1 <- choose(13, 2)
+
+# Paso 2: Elegir 2 cartas para cada valor (4 palos disponibles)
+formas_elegir_2_cartas_pareja1 <- choose(4, 2)
+formas_elegir_2_cartas_pareja2 <- choose(4, 2)
+
+# Elegimos la quinta carta de los 11 valores posibles restantes
+formas_elegir_valor_adicional <- choose(11, 1)
+formas_elegir_carta_adicional <- choose(4, 1)
+
+# Total de maneras de formar la doble pareja
+formas_doblePareja <- formas_elegir_valor_pareja1 * formas_elegir_2_cartas_pareja1 * formas_elegir_2_cartas_pareja2 * formas_elegir_valor_adicional * formas_elegir_carta_adicional
+
+# Calcular la probabilidad de una doble pareja
+probabilidad_doblePareja <- formas_doblePareja / total_combinaciones
+
+# Mostrar el resultado
+probabilidad_doblePareja
+```
+
 ## Probabilidad de trío
-3 cartas iguales 2 dos desiguales
+Trio -> 3 cartas iguales 2 dos desiguales
+
+```{r}
+# Total de maneras de elegir 5 cartas de 52
+total_combinaciones <- choose(52, 5)
+
+# Paso 1: Elegir el valor para el trío (13 valores disponibles)
+formas_elegir_valor_trio <- choose(13, 1)
+# Paso 2: Elegir 3 cartas de ese valor (4 palos disponibles)
+formas_elegir_3_cartas_trio <- choose(4, 3)
+
+# Paso 3: Elegimos el valor de las otras dos cartas de los 12 valores restantes
+formas_elegir_valor_adicional1 <- choose(12, 2)
+# Paso 4: Elegir 1 carta de los valores (4 palos disponibles)
+formas_elegir_carta_adicional1 <- choose(4, 1)
+formas_elegir_carta_adicional2 <- choose(4, 1)
+
+# Total de maneras de formar un trio
+formas_trio <- formas_elegir_valor_trio * formas_elegir_3_cartas_trio * formas_elegir_valor_adicional1 * formas_elegir_carta_adicional1 * formas_elegir_carta_adicional2
+
+# Calcular la probabilidad de un trio
+probabilidad_trio <- formas_trio / total_combinaciones
+
+# Mostrar el resultado
+probabilidad_trio
+```
+
 ## Probabilidad de escalera
-escalera de 5 cartas de diferentes palos
+Escalera -> escalera de 5 cartas de diferentes palos
+
+```{r}
+# Total de maneras de elegir 5 cartas de 52
+total_combinaciones <- choose(52, 5)
+
+# Paso 1: Hay 10 secuencias posibles de valores para formar una escalera
+num_secuencias_escalera <- 10
+
+# Paso 2: Para cada secuencia de valores, hay 4^5 combinaciones de palos
+# (ya que cada carta puede ser de cualquier palo)
+formas_combinaciones_palos <- 4^5
+
+# Paso 3: Excluir las 4 combinaciones en las que todas las cartas son del mismo palo
+formas_escalera_por_secuencia <- formas_combinaciones_palos - 4
+
+# Total de maneras de formar una escalera simple
+formas_escalera <- num_secuencias_escalera * formas_escalera_por_secuencia
+
+# Calcular la probabilidad de una escalera
+probabilidad_escalera <- formas_escalera / total_combinaciones
+
+# Mostrar el resultado
+probabilidad_escalera
+```
+
 ## Probabilidad de escalera de color
-escalera 5 cartas del mismo palo
+Escalera de Color -> escalera 5 cartas del mismo palo
+
+```{r}
+# Total de maneras de elegir 5 cartas de 52
+total_combinaciones <- choose(52, 5)
+
+# Paso 1: Hay 10 secuencias posibles de valores para formar una escalera
+num_secuencias_escalera <- 10
+
+# Paso 2: Para cada secuencia de valores, tenemos 4 opciones de palos
+formas_escalera_color <- num_secuencias_escalera * 4
+
+# Calcular la probabilidad de una escalera de color
+probabilidad_escalera_color <- formas_escalera_color / total_combinaciones
+
+# Mostrar el resultado
+probabilidad_escalera_color
+```
+
 # 2. Distribución y densidad de una variable aleatoria
 
 
