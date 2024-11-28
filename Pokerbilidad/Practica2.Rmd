@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 1. Probabilidad en una baraja de cartas
+Se seleccionan al azar 5 cartas de una baraja francesa. A continuación se calcula la probabilidad de obtener:
+
 
 ## Probabilidad de Póker
 Póker -> 4 cartas iguales de los 4 palos 1 diferente
@@ -171,6 +173,30 @@ probabilidad_escalera_color
 ```
 
 # 2. Distribución y densidad de una variable aleatoria
+Sea X una variable aleatoria con función de distribución F(x) = e ^-e ^-x para todo x perteneciente a R. Realiza: 
+
+## Determinar la función de densidad de X
+Sabiendo que la función de distribución F(x) se relaciona con la de densidad f(x) de la siguiente manera: 
+
+f(x) = d/dx F(x)
+
+Para hacer esto, se utiliza la regla de la cadena, quedando como que la derivada es:
+
+f(x) = d/dx e ^-e ^-x = e ^-e ^-x * d/dx (-e^-x)
+
+La derivada de (-e^-x) es e^-x, por lo tanto, la derivada es: 
+
+f(x) = e ^-e ^-x * e^-x
+
+## Calcular P{1 ≤ X ≤ 2}
+
+## Calcular P {0 ≤ X 1 | -1 ≤ X 1}
+
+## Hallar la mediana de X
+
+## Hallar la moda de X
+
+## Determinar la distribución de la variable aleatoria Y = e ^−X
 
 
 # 3. Experimento: evaluación de efectividad de la vacuna experimental
