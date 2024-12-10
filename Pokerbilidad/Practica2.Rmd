@@ -190,7 +190,51 @@ f(x) = e ^-e ^-x * e^-x
 
 ## Calcular P{1 ≤ X ≤ 2}
 
+Sabiendo que debemos usar la formula de la función de distribución acumulativa f(x) que es P(1 ≤ X ≤ 2)= P(x ≤ 2)- P(x ≤ 1) y que la funcion de P(x ≤ X) = e^-e^-x
+
+Por lo sustituiremos x = 2 y x = 1 ::
+P(x ≤ 2) = e^-e^-2
+P(x ≤ 1) = e^-e^-1
+
+Dando finalmente :
+
+P{1 ≤ X ≤ 2}= e^-e^-2 - e^-e^-1
+
+
 ## Calcular P {0 ≤ X 1 | -1 ≤ X 1}
+
+Sabiendo que es una probabilidad condicional por lo que lo deberemos calcular como:
+
+P {0 ≤ X 1 | -1 ≤ X 1}= P(-1 ≤ x ≤ 0)/P(-1 ≤ x)
+
+
+Primero calcularemos P(-1 ≤ x ≤ 0):
+
+P(-1 ≤ x ≤ 0) = P(x ≤ 0) - P(x ≤ -1)
+ 
+Sustitumos como en el ejercicio anteiror por e^-e^-x 
+
+P(x ≤ 0) = e^-e^0 = e^-1
+P(x ≤ -1)= e^-e^1= e^-e
+
+Dando finalmente:
+
+P(-1 ≤ x ≤ 0) = e^-1 - e^-e
+
+Seguidamente calcularemos P(-1 ≤ x) 
+
+Siendo P(-1 ≤ x)=1 - P(x ≤ -1)
+
+Sabiendo ya que la pobabilidad de P(x ≤ -1) = e^-e 
+
+Dando finalmalmente:
+
+P(-1 ≤ x)=1 - e^-e 
+
+Y por ultimo sustitumos en la formula inicial 
+
+P {0 ≤ X 1 | -1 ≤ X 1}= P(-1 ≤ x ≤ 0)/P(-1 ≤ x) = e^-1 - e^-e / 1 - e^-e 
+
 
 ## Hallar la mediana de X
 
