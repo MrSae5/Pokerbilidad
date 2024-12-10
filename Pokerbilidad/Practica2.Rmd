@@ -194,6 +194,30 @@ f(x) = e ^-e ^-x * e^-x
 
 ## Hallar la mediana de X
 
+
+Para hallar la mediana de la funcion F(x), asumimos que:
+
+F(x) = 0.5
+
+Es decir, 
+
+e^(-e^(-x))=0.5 ,
+−e^(−x)=ln(0.5) ,
+−x=ln(ln(2)) ,
+x = −ln(ln(2))
+
+La mediana es igual a -ln(ln(2))
+
+```{r}
+F <- function(x) {
+  exp(-exp(-x))
+}
+
+mediana <- uniroot(function(x) F(x) - 0.5, c(-10, 10))$root
+
+print(mediana)
+```
+
 ## Hallar la moda de X
 
 ## Determinar la distribución de la variable aleatoria Y = e ^−X
