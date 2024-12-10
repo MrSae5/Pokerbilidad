@@ -200,7 +200,16 @@ Dando finalmente :
 
 P{1 ≤ X ≤ 2}= e^-e^-2 - e^-e^-1
 
+```{r}
 
+F <- function(x) {
+  return(exp(-exp(-x)))
+}
+
+P_1_2 <- F(2) - F(1)
+P_1_2
+
+```
 ## Calcular P {0 ≤ X 1 | -1 ≤ X 1}
 
 Sabiendo que es una probabilidad condicional por lo que lo deberemos calcular como:
@@ -235,9 +244,49 @@ Y por ultimo sustitumos en la formula inicial
 
 P {0 ≤ X 1 | -1 ≤ X 1}= P(-1 ≤ x ≤ 0)/P(-1 ≤ x) = e^-1 - e^-e / 1 - e^-e 
 
+```{r}
+
+F <- function(x) {
+  return(exp(-exp(-x)))
+}
+
+
+P_1_2 <- F(2) - F(1)
+print(paste("P(1 <= X <= 2) =", P_1_2))
+
+P_0_1 <- F(1) - F(0)
+print(paste("P(0 <= X <= 1) =", P_0_1))
+
+```
+
 ## Hallar la mediana de X
 
+
+Para hallar la mediana de la funcion F(x), asumimos que:
+
+F(x) = 0.5
+
+Es decir, 
+
+e^(-e^(-x))=0.5 ,
+−e^(−x)=ln(0.5) ,
+−x=ln(ln(2)) ,
+x = −ln(ln(2))
+
+La mediana es igual a -ln(ln(2))
+
+```{r}
+F <- function(x) {
+  exp(-exp(-x))
+}
+
+mediana <- uniroot(function(x) F(x) - 0.5, c(-10, 10))$root
+
+print(mediana)
+```
+
 ## Hallar la moda de X
+
 
 ## Determinar la distribución de la variable aleatoria Y = e ^−X
 
