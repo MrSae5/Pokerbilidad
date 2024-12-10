@@ -1652,17 +1652,74 @@ densidad f(x) de la siguiente manera:</p>
 <p>Para hacer esto, se utiliza la regla de la cadena, quedando como que
 la derivada es:</p>
 <p>f(x) = d/dx e ^-e ^-x = e ^-e ^-x * d/dx (-e^-x)</p>
-<p>Por lo tanto, la derivada es:</p>
+<p>La derivada de (-e^-x) es e^-x, por lo tanto, la derivada es:</p>
 <p>f(x) = e ^-e ^-x * e^-x</p>
 </div>
 <div id="calcular-p1-x-2" class="section level2">
 <h2>Calcular P{1 ≤ X ≤ 2}</h2>
+<p>Sabiendo que debemos usar la formula de la función de distribución
+acumulativa f(x) que es P(1 ≤ X ≤ 2)= P(x ≤ 2)- P(x ≤ 1) y que la
+funcion de P(x ≤ X) = e<sup>-e</sup>-x</p>
+<p>Por lo sustituiremos x = 2 y x = 1 :: P(x ≤ 2) = e<sup>-e</sup>-2 P(x
+≤ 1) = e<sup>-e</sup>-1</p>
+<p>Dando finalmente :</p>
+<p>P{1 ≤ X ≤ 2}= e<sup>-e</sup>-2 - e<sup>-e</sup>-1</p>
+<pre class="r"><code>F &lt;- function(x) {
+  return(exp(-exp(-x)))
+}
+
+P_1_2 &lt;- F(2) - F(1)
+P_1_2</code></pre>
+<pre><code>## [1] 0.1812224</code></pre>
 </div>
 <div id="calcular-p-0-x-1--1-x-1" class="section level2">
 <h2>Calcular P {0 ≤ X 1 | -1 ≤ X 1}</h2>
+<p>Sabiendo que es una probabilidad condicional por lo que lo deberemos
+calcular como:</p>
+<p>P {0 ≤ X 1 | -1 ≤ X 1}= P(-1 ≤ x ≤ 0)/P(-1 ≤ x)</p>
+<p>Primero calcularemos P(-1 ≤ x ≤ 0):</p>
+<p>P(-1 ≤ x ≤ 0) = P(x ≤ 0) - P(x ≤ -1)</p>
+<p>Sustitumos como en el ejercicio anteiror por e<sup>-e</sup>-x</p>
+<p>P(x ≤ 0) = e<sup>-e</sup>0 = e^-1 P(x ≤ -1)= e<sup>-e</sup>1=
+e^-e</p>
+<p>Dando finalmente:</p>
+<p>P(-1 ≤ x ≤ 0) = e^-1 - e^-e</p>
+<p>Seguidamente calcularemos P(-1 ≤ x)</p>
+<p>Siendo P(-1 ≤ x)=1 - P(x ≤ -1)</p>
+<p>Sabiendo ya que la pobabilidad de P(x ≤ -1) = e^-e</p>
+<p>Dando finalmalmente:</p>
+<p>P(-1 ≤ x)=1 - e^-e</p>
+<p>Y por ultimo sustitumos en la formula inicial</p>
+<p>P {0 ≤ X 1 | -1 ≤ X 1}= P(-1 ≤ x ≤ 0)/P(-1 ≤ x) = e^-1 - e^-e / 1 -
+e^-e</p>
+<pre class="r"><code>F &lt;- function(x) {
+  return(exp(-exp(-x)))
+}
+
+
+P_1_2 &lt;- F(2) - F(1)
+print(paste(&quot;P(1 &lt;= X &lt;= 2) =&quot;, P_1_2))</code></pre>
+<pre><code>## [1] &quot;P(1 &lt;= X &lt;= 2) = 0.18122239093777&quot;</code></pre>
+<pre class="r"><code>P_0_1 &lt;- F(1) - F(0)
+print(paste(&quot;P(0 &lt;= X &lt;= 1) =&quot;, P_0_1))</code></pre>
+<pre><code>## [1] &quot;P(0 &lt;= X &lt;= 1) = 0.324321186383904&quot;</code></pre>
 </div>
 <div id="hallar-la-mediana-de-x" class="section level2">
 <h2>Hallar la mediana de X</h2>
+<p>Para hallar la mediana de la funcion F(x), asumimos que:</p>
+<p>F(x) = 0.5</p>
+<p>Es decir,</p>
+<p>e<sup>(-e</sup>(-x))=0.5 , −e^(−x)=ln(0.5) , −x=ln(ln(2)) , x =
+−ln(ln(2))</p>
+<p>La mediana es igual a -ln(ln(2))</p>
+<pre class="r"><code>F &lt;- function(x) {
+  exp(-exp(-x))
+}
+
+mediana &lt;- uniroot(function(x) F(x) - 0.5, c(-10, 10))$root
+
+print(mediana)</code></pre>
+<pre><code>## [1] 0.366513</code></pre>
 </div>
 <div id="hallar-la-moda-de-x" class="section level2">
 <h2>Hallar la moda de X</h2>
