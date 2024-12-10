@@ -200,7 +200,16 @@ Dando finalmente :
 
 P{1 ≤ X ≤ 2}= e^-e^-2 - e^-e^-1
 
+```{r}
 
+F <- function(x) {
+  return(exp(-exp(-x)))
+}
+
+P_1_2 <- F(2) - F(1)
+P_1_2
+
+```
 ## Calcular P {0 ≤ X 1 | -1 ≤ X 1}
 
 Sabiendo que es una probabilidad condicional por lo que lo deberemos calcular como:
@@ -235,7 +244,20 @@ Y por ultimo sustitumos en la formula inicial
 
 P {0 ≤ X 1 | -1 ≤ X 1}= P(-1 ≤ x ≤ 0)/P(-1 ≤ x) = e^-1 - e^-e / 1 - e^-e 
 
+```{r}
 
+F <- function(x) {
+  return(exp(-exp(-x)))
+}
+
+
+P_1_2 <- F(2) - F(1)
+print(paste("P(1 <= X <= 2) =", P_1_2))
+
+P_0_1 <- F(1) - F(0)
+print(paste("P(0 <= X <= 1) =", P_0_1))
+
+```
 ## Hallar la mediana de X
 
 
