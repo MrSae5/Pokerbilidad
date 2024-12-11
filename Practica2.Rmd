@@ -289,7 +289,51 @@ print(mediana)
 
 
 ## Determinar la distribución de la variable aleatoria Y = e ^−X
+La función de densidad de Y se obtiene usando el cambio de variable:
+fY(y) = fX(x) * dx/dy
 
+fX(x) es la función calculada en el apartado 1:
+fX(x) = e ^-e ^-x * e^-x, pero se sustituye la x por la función calculada a raíz del enunciado (en el siguiente punto)
+
+dx/dy se cualcula sabiendo que:
+Y = e^-X --> X = -ln(Y)
+Así que la derivada sería -1/y
+
+Por lo tanto, la función de densidad de Y sería:
+fY(y) = e ^-e ^-(-ln(Y)) * e^-(-ln(Y)) * -1/y
 
 # 3. Experimento: evaluación de efectividad de la vacuna experimental
 
+## Formular el contraste de hipótesis
+Las dos hiótesis que hay son:
+Hipótesis nula (H0) = efectividad igual a la vacuna anterior (p = 0.25)
+Hipótesis alternativa (H1) = efectividad mayor (p > 0.25)
+
+El valor de la significancia se toma por 0.05, y se toma como evidencia de mejora que 8 entre 20 residentes muestren resistencia.
+
+Con los datos, se puede rechazar H0 si P(X>8∣H0)<=significancia
+
+X es una distribución binomial: Binomial(muestras (n), p0)
+```{r}
+# Parámetros
+n <- 20
+p0 <- 0.25
+significancia <- 0.05
+
+# Probabilidad acumulada bajo H0
+p <- 1 - pbinom(8, n, p0) # Es la probabilidad inversa de que 8 no muestren resistencia
+cat("Probabilidad de eficacia:", p)
+
+# Decisión
+if (p <= significancia) {
+  cat("Rechazamos H0: La vacuna muestra una efectividad superior al 25%.\n")
+} else {
+  cat("No podemos rechazar H0: No hay evidencia suficiente para concluir que la efectividad ha mejorado.\n")
+}
+
+```
+
+## Definir las regiones de aceptación y rechazo
+
+
+## Calcular las probabilidades de error tipo I y tipo II

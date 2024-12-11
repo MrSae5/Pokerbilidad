@@ -1726,11 +1726,53 @@ print(mediana)</code></pre>
 </div>
 <div id="determinar-la-distribución-de-la-variable-aleatoria-y-e-x" class="section level2">
 <h2>Determinar la distribución de la variable aleatoria Y = e ^−X</h2>
+<p>La función de densidad de Y se obtiene usando el cambio de variable:
+fY(y) = fX(x) * dx/dy</p>
+<p>fX(x) es la función calculada en el apartado 1: fX(x) = e ^-e ^-x *
+e^-x, pero se sustituye la x por la función calculada a raíz del
+enunciado (en el siguiente punto)</p>
+<p>dx/dy se cualcula sabiendo que: Y = e^-X –&gt; X = -ln(Y) Así que la
+derivada sería -1/y</p>
+<p>Por lo tanto, la función de densidad de Y sería: fY(y) = e ^-e
+^-(-ln(Y)) * e^-(-ln(Y)) * -1/y</p>
 </div>
 </div>
 <div id="experimento-evaluación-de-efectividad-de-la-vacuna-experimental" class="section level1">
 <h1>3. Experimento: evaluación de efectividad de la vacuna
 experimental</h1>
+<div id="formular-el-contraste-de-hipótesis" class="section level2">
+<h2>Formular el contraste de hipótesis</h2>
+<p>Las dos hiótesis que hay son: Hipótesis nula (H0) = efectividad igual
+a la vacuna anterior (p = 0.25) Hipótesis alternativa (H1) = efectividad
+mayor (p &gt; 0.25)</p>
+<p>El valor de la significancia se toma por 0.05, y se toma como
+evidencia de mejora que 8 entre 20 residentes muestren resistencia.</p>
+<p>Con los datos, se puede rechazar H0 si
+P(X&gt;8∣H0)&lt;=significancia</p>
+<p>X es una distribución binomial: Binomial(muestras (n), p0)</p>
+<pre class="r"><code># Parámetros
+n &lt;- 20
+p0 &lt;- 0.25
+significancia &lt;- 0.05
+
+# Probabilidad acumulada bajo H0
+p &lt;- 1 - pbinom(8, n, p0) # Es la probabilidad inversa de que 8 no muestren resistencia
+cat(&quot;Probabilidad de eficacia:&quot;, p)</code></pre>
+<pre><code>## Probabilidad de eficacia: 0.04092517</code></pre>
+<pre class="r"><code># Decisión
+if (p &lt;= significancia) {
+  cat(&quot;Rechazamos H0: La vacuna muestra una efectividad superior al 25%.\n&quot;)
+} else {
+  cat(&quot;No podemos rechazar H0: No hay evidencia suficiente para concluir que la efectividad ha mejorado.\n&quot;)
+}</code></pre>
+<pre><code>## Rechazamos H0: La vacuna muestra una efectividad superior al 25%.</code></pre>
+</div>
+<div id="definir-las-regiones-de-aceptación-y-rechazo" class="section level2">
+<h2>Definir las regiones de aceptación y rechazo</h2>
+</div>
+<div id="calcular-las-probabilidades-de-error-tipo-i-y-tipo-ii" class="section level2">
+<h2>Calcular las probabilidades de error tipo I y tipo II</h2>
+</div>
 </div>
 
 
