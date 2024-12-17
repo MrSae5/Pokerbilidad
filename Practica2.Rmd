@@ -305,9 +305,11 @@ fY(y) = e ^-e ^-(-ln(Y)) * e^-(-ln(Y)) * -1/y
 # 3. Experimento: evaluación de efectividad de la vacuna experimental
 
 ## Formular el contraste de hipótesis
-Las dos hiótesis que hay son:
+Las dos hipótesis que hay son:
 Hipótesis nula (H0) = efectividad igual a la vacuna anterior (p = 0.25)
 Hipótesis alternativa (H1) = efectividad mayor (p > 0.25)
+
+## Definir las regiones de aceptación y rechazo
 
 El valor de la significancia se toma por 0.05, y se toma como evidencia de mejora que 8 entre 20 residentes muestren resistencia.
 
@@ -332,8 +334,6 @@ if (p <= significancia) {
 }
 
 ```
-
-## Definir las regiones de aceptación y rechazo
 
 
 ## Calcular las probabilidades de error tipo I y tipo II
