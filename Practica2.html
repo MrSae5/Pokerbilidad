@@ -1654,6 +1654,10 @@ la derivada es:</p>
 <p>f(x) = d/dx e ^-e ^-x = e ^-e ^-x * d/dx (-e^-x)</p>
 <p>La derivada de (-e^-x) es e^-x, por lo tanto, la derivada es:</p>
 <p>f(x) = e ^-e ^-x * e^-x</p>
+<pre class="r"><code># Función de densidad
+f &lt;- function(x) {
+  exp(-exp(-x)) * exp(-x)
+}</code></pre>
 </div>
 <div id="calcular-p1-x-2" class="section level2">
 <h2>Calcular P{1 ≤ X ≤ 2}</h2>
@@ -1723,6 +1727,40 @@ print(mediana)</code></pre>
 </div>
 <div id="hallar-la-moda-de-x" class="section level2">
 <h2>Hallar la moda de X</h2>
+<p>La moda de f(x) corresponde al valor de x donde f(x) alcanza su
+máximo. Para encontrar este máximo, se toma la derivada de f(x) respecto
+a x, la igualamos a cero y se resuelve.</p>
+<pre class="r"><code># Función de densidad
+f &lt;- function(x) {
+  exp(-exp(-x)) * exp(-x)
+}
+
+# Derivada de la función de densidad
+f_prime &lt;- function(x) {
+  exp(-x - exp(-x)) * (exp(-x) - 1)
+}
+
+
+# Verificar si x = 0 es la moda. Comprobar que la derivada es cero en x = 0 y que cambia de signo.
+critical_point &lt;- 0
+
+# Evaluamos la derivada en x = 0
+derivative_at_critical_point &lt;- f_prime(critical_point)
+
+# Verificamos si cambia de signo alrededor de x = 0
+derivative_before &lt;- f_prime(critical_point - 0.1)
+derivative_after &lt;- f_prime(critical_point + 0.1)
+
+# Mostrar resultados
+derivative_at_critical_point</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>derivative_before</code></pre>
+<pre><code>## [1] 0.03849067</code></pre>
+<pre class="r"><code>derivative_after</code></pre>
+<pre><code>## [1] -0.03483942</code></pre>
+<p>El signo de la derivada cambia de positivo a negativo alrededor de
+x=0. Esto sugiere que x=0 es un máximo local, lo que indica que es la
+moda de la distribución.</p>
 </div>
 <div id="determinar-la-distribución-de-la-variable-aleatoria-y-e-x" class="section level2">
 <h2>Determinar la distribución de la variable aleatoria Y = e ^−X</h2>
@@ -1742,9 +1780,12 @@ derivada sería -1/y</p>
 experimental</h1>
 <div id="formular-el-contraste-de-hipótesis" class="section level2">
 <h2>Formular el contraste de hipótesis</h2>
-<p>Las dos hiótesis que hay son: Hipótesis nula (H0) = efectividad igual
-a la vacuna anterior (p = 0.25) Hipótesis alternativa (H1) = efectividad
-mayor (p &gt; 0.25)</p>
+<p>Las dos hipótesis que hay son: Hipótesis nula (H0) = efectividad
+igual a la vacuna anterior (p = 0.25) Hipótesis alternativa (H1) =
+efectividad mayor (p &gt; 0.25)</p>
+</div>
+<div id="definir-las-regiones-de-aceptación-y-rechazo" class="section level2">
+<h2>Definir las regiones de aceptación y rechazo</h2>
 <p>El valor de la significancia se toma por 0.05, y se toma como
 evidencia de mejora que 8 entre 20 residentes muestren resistencia.</p>
 <p>Con los datos, se puede rechazar H0 si
@@ -1766,9 +1807,6 @@ if (p &lt;= significancia) {
   cat(&quot;No podemos rechazar H0: No hay evidencia suficiente para concluir que la efectividad ha mejorado.\n&quot;)
 }</code></pre>
 <pre><code>## Rechazamos H0: La vacuna muestra una efectividad superior al 25%.</code></pre>
-</div>
-<div id="definir-las-regiones-de-aceptación-y-rechazo" class="section level2">
-<h2>Definir las regiones de aceptación y rechazo</h2>
 </div>
 <div id="calcular-las-probabilidades-de-error-tipo-i-y-tipo-ii" class="section level2">
 <h2>Calcular las probabilidades de error tipo I y tipo II</h2>

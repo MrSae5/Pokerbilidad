@@ -188,6 +188,13 @@ La derivada de (-e^-x) es e^-x, por lo tanto, la derivada es:
 
 f(x) = e ^-e ^-x * e^-x
 
+````{r}
+# Función de densidad
+f <- function(x) {
+  exp(-exp(-x)) * exp(-x)
+}
+````
+
 ## Calcular P{1 ≤ X ≤ 2}
 
 Sabiendo que debemos usar la formula de la función de distribución acumulativa f(x) que es P(1 ≤ X ≤ 2)= P(x ≤ 2)- P(x ≤ 1) y que la funcion de P(x ≤ X) = e^-e^-x
@@ -286,6 +293,37 @@ print(mediana)
 ```
 
 ## Hallar la moda de X
+La moda de f(x) corresponde al valor de x donde f(x) alcanza su máximo. Para encontrar este máximo, se toma la derivada de f(x) respecto a x, la igualamos a cero y se resuelve.
+
+````{r}
+# Función de densidad
+f <- function(x) {
+  exp(-exp(-x)) * exp(-x)
+}
+
+# Derivada de la función de densidad
+f_prime <- function(x) {
+  exp(-x - exp(-x)) * (exp(-x) - 1)
+}
+
+
+# Verificar si x = 0 es la moda. Comprobar que la derivada es cero en x = 0 y que cambia de signo.
+critical_point <- 0
+
+# Evaluamos la derivada en x = 0
+derivative_at_critical_point <- f_prime(critical_point)
+
+# Verificamos si cambia de signo alrededor de x = 0
+derivative_before <- f_prime(critical_point - 0.1)
+derivative_after <- f_prime(critical_point + 0.1)
+
+# Mostrar resultados
+derivative_at_critical_point
+derivative_before
+derivative_after
+
+````
+El signo de la derivada cambia de positivo a negativo alrededor de x=0. Esto sugiere que x=0 es un máximo local, lo que indica que es la moda de la distribución.
 
 
 ## Determinar la distribución de la variable aleatoria Y = e ^−X
