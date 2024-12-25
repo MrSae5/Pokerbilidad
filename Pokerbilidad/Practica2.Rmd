@@ -188,6 +188,13 @@ La derivada de (-e^-x) es e^-x, por lo tanto, la derivada es:
 
 f(x) = e ^-e ^-x * e^-x
 
+````{r}
+# Función de densidad
+f <- function(x) {
+  exp(-exp(-x)) * exp(-x)
+}
+````
+
 ## Calcular P{1 ≤ X ≤ 2}
 
 Sabiendo que debemos usar la formula de la función de distribución acumulativa f(x) que es P(1 ≤ X ≤ 2)= P(x ≤ 2)- P(x ≤ 1) y que la funcion de P(x ≤ X) = e^-e^-x
@@ -286,8 +293,100 @@ print(mediana)
 
 ## Hallar la moda de X
 
+La moda de f(x) corresponde al valor de x donde f(x) alcanza su máximo. Para encontrar este máximo, se toma la derivada de f(x) respecto a x, la igualamos a cero y se resuelve.
+
+````{r}
+# Función de densidad
+f <- function(x) {
+  exp(-exp(-x)) * exp(-x)
+}
+
+# Derivada de la función de densidad
+f_prime <- function(x) {
+  exp(-x - exp(-x)) * (exp(-x) - 1)
+}
+
+
+# Verificar si x = 0 es la moda. Comprobar que la derivada es cero en x = 0 y que cambia de signo.
+critical_point <- 0
+
+# Evaluamos la derivada en x = 0
+derivative_at_critical_point <- f_prime(critical_point)
+
+# Verificamos si cambia de signo alrededor de x = 0
+derivative_before <- f_prime(critical_point - 0.1)
+derivative_after <- f_prime(critical_point + 0.1)
+
+# Mostrar resultados
+derivative_at_critical_point
+derivative_before
+derivative_after
+
+````
+El signo de la derivada cambia de positivo a negativo alrededor de x=0. Esto sugiere que x=0 es un máximo local, lo que indica que es la moda de la distribución.
+
 ## Determinar la distribución de la variable aleatoria Y = e ^−X
 
+La función de densidad de Y se obtiene usando el cambio de variable:
+fY(y) = fX(x) * dx/dy
+
+fX(x) es la función calculada en el apartado 1:
+fX(x) = e ^-e ^-x * e^-x, pero se sustituye la x por la función calculada a raíz del enunciado (en el siguiente punto)
+
+dx/dy se cualcula sabiendo que:
+Y = e^-X --> X = -ln(Y)
+Así que la derivada sería -1/y
+
+Por lo tanto, la función de densidad de Y sería:
+fY(y) = e ^-e ^-(-ln(Y)) * e^-(-ln(Y)) * -1/y
 
 # 3. Experimento: evaluación de efectividad de la vacuna experimental
 
+## Formular el contraste de hipótesis
+Las dos hipótesis que hay son:
+Hipótesis nula (H0) = efectividad igual a la vacuna anterior (p = 0.25)
+Hipótesis alternativa (H1) = efectividad mayor (p > 0.25)
+
+## Definir las regiones de aceptación y rechazo
+
+El valor de la significancia se toma por 0.05, y se toma como evidencia de mejora que 8 entre 20 residentes muestren resistencia.
+
+Con los datos, se puede rechazar H0 si P(X>8∣H0)<=significancia
+
+X es una distribución binomial: Binomial(muestras (n), p0)
+
+## Calcular las probabilidades de error tipo I y tipo II
+
+El error tipo I es la probabilidad de rechazar H0 cuando es verdadera, está calculada bajo la suposición de que la efectividad de la vacuna es del 25% (p0).
+El error tipo II es la probabilidad de no rechazar H0 cuando H1 es verdadera. Suponemos una efectividad del 50% (p1) para este cálculo. Estos valores ayudan a evaluar los riesgos en las decisiones del experimento. 
+```{r}
+# Parámetros
+n <- 20
+p0 <- 0.25
+significancia <- 0.05
+
+# Región de rechazo
+valor_critico <- qbinom(1 - significancia, n, p0)
+cat("Región de rechazo: X >", valor_critico, "\n")
+
+# Probabilidad acumulada bajo H0
+p <- 1 - pbinom(8, n, p0) # Es la probabilidad inversa de que 8 no muestren resistencia
+cat("Probabilidad de eficacia:", p)
+
+# Decisión
+if (p <= significancia) {
+  cat("Rechazamos H0: La vacuna muestra una efectividad superior al 25%.\n")
+} else {
+  cat("No podemos rechazar H0: No hay evidencia suficiente para concluir que la efectividad ha mejorado.\n")
+}
+
+# Calcular error tipo I
+alpha <- 1 - pbinom(valor_critico - 1, n, p0) # P(X > valor_critico | H0)
+cat("Probabilidad de error tipo I:", alpha, "\n")
+
+# Calcular error tipo II
+p1 <- 0.5 # Supongamos que la efectividad alternativa es del 50%
+beta <- pbinom(valor_critico - 1, n, p1) # P(X <= valor_critico | H1)
+cat("Probabilidad de error tipo II:", beta, "\n")
+
+```
